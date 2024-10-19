@@ -1,5 +1,6 @@
-import { User } from "../models/user.model";
+import { User } from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
+import {generateTokenAndSetCookie} from "../utils/generateTokenAndSetCookie.js"
 
 export const signup = async (req, res) => {
   const { email, password, name } = req.body;
@@ -39,10 +40,9 @@ export const signup = async (req, res) => {
         password: undefined,
       },
     });
-  } catch (errror) {
+  } catch (errror) { 
     res.status(400).json({ success: false, message: errror.message });
   }
-  res.send("signup route");
 };
 
 export const login = async (req, res) => {
