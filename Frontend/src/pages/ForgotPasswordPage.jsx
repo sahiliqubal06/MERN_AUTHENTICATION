@@ -8,11 +8,13 @@ import { Link } from "react-router-dom";
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState();
-  
-  const [isLoading, setIsLoading] = useAuthStore();
+
+  const { isLoading, forgotPassword } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await forgotPassword(email);
+    setIsSubmitted(true);
   };
 
   return (
